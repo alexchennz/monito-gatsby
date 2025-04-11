@@ -4,6 +4,7 @@ import rectangle3 from '../images/Rectangle 3.svg';
 import rectangle8 from '../images/Rectangle 8.svg';
 import rectangle9 from '../images/Rectangle 9.svg';
 import playCircle from '../images/Play_Circle.png';
+import { Link } from 'gatsby';
 
 const Hero = () => {
   return (
@@ -14,8 +15,6 @@ const Hero = () => {
       {/* SVG Rectangles - just a couple for subtle decoration */}
       <div className="container mx-auto relative">
       <img src={rectangle3} alt="" className="absolute top-24 size-16" />
-      
-      {/* <div className="absolute bottom-[20%] left-[15%] w-32 h-32 rounded-full bg-mon-yellow opacity-40"></div> */}
       </div>
       
       
@@ -34,13 +33,13 @@ const Hero = () => {
               Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className=" text-dark-blue font-medium py-3 px-7 rounded-3xl hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
+              <Link to='#' className=" text-dark-blue font-medium py-3 px-7 rounded-3xl hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
                 <span>View Intro</span>
                 <img src={playCircle} alt="Play icon" className="w-6 h-6" />
-              </button>
-              <button className="bg-white text-dark-blue font-medium py-3 px-7 rounded-3xl ring-2 ring-dark-blue hover:bg-transparent transition-colors flex items-center gap-2">
+              </Link>
+              <Link to='#' className="bg-white text-dark-blue font-medium py-3 px-7 rounded-3xl ring-2 ring-dark-blue hover:bg-transparent transition-colors flex items-center gap-2">
                 <span>Explore Now</span>
-              </button>
+              </Link>
             </div>
           </div>
           

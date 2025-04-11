@@ -20,7 +20,9 @@ module.exports = {
         "pink-red": "#FF564F",
         "green-light": "#34C759",
         "orange-shine": "#FF912C",
-        "blue-sea": "#00A7E7"
+        "blue-sea": "#00A7E7",
+        "neutral": "#00171F",
+        "neutral-60": "#667479"
       }
     },
   },
@@ -32,6 +34,9 @@ module.exports = {
         },
         '.text-clamp-h2': {
           'font-size': 'clamp(1.8rem, 1.3391rem + 1.8043vw, 3.125rem)',
+        },
+        '.text-clamp-h3': {
+          'font-size': 'clamp(1rem, 0.8261rem + 0.8696vw, 1.5rem)',
         },
         '.text-clamp-p': {
           'font-size': 'clamp(0.75rem, 0.663rem + 0.4348vw, 1rem)',

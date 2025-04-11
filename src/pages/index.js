@@ -1,7 +1,7 @@
 import * as React from "react"
 import Header from "../components/Header"
 import Hero from "../components/Hero"
-
+import ProductsSection from "../components/ProductsSection"
 
 
 const IndexPage = () => {
@@ -9,6 +9,7 @@ const IndexPage = () => {
     <main>
       <Header />
       <Hero />
+      <ProductsSection />
     </main>
   )
 }

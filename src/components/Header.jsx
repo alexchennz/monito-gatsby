@@ -1,7 +1,5 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { MdPersonOutline } from 'react-icons/md';
-import { IoMdCart } from 'react-icons/io';
 import { HiMenu } from 'react-icons/hi';
 import monitoLogo from '../images/monito-logo.svg';
 
