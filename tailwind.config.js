@@ -36,6 +36,9 @@ module.exports = {
           'font-size': 'clamp(1.8rem, 1.3391rem + 1.8043vw, 3.125rem)',
         },
         '.text-clamp-h3': {
+          'font-size': 'clamp(1.25rem, 0.9022rem + 1.7391vw, 2.25rem)',
+        },
+        '.text-clamp-h4': {
           'font-size': 'clamp(1rem, 0.8261rem + 0.8696vw, 1.5rem)',
         },
         '.text-clamp-p': {

@@ -12,10 +12,10 @@ const HomeBanner = () => {
             {/* Right content */}
             <div className="w-full lg:w-1/2  xl:w-[40%] p-4 lg:p-8 xl:p-12 flex flex-col justify-center relative z-20">
               <h2 className="text-clamp-h2 font-extrabold text-dark-blue leading-tight mb-2">
-                One more friend
+              One More Friend
               </h2>
               <h3 className="text-clamp-h3 font-bold text-dark-blue leading-tight mb-4">
-                Thousands more fun!
+                Thousands More Fun!
               </h3>
               <p className="text-base text-neutral mb-8 lg:max-w-lg">
                 Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!

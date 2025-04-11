@@ -131,7 +131,7 @@ const ProductsSection = () => {
         <div className="flex md:flex-row justify-between items-center">
           <div>
             <p className="text-black text-sm">Whats new?</p>
-            <h3 className="text-clamp-h3 font-bold text-dark-blue-80 mb-4">Take a look at some of our pets</h3>
+            <h4 className="text-clamp-h4 font-bold text-dark-blue-80 mb-4">Take a look at some of our pets</h4>
           </div>
           <div>
 

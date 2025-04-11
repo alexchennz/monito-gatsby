@@ -27,7 +27,7 @@ const Hero = () => {
               One More Friend
             </h1>
             <h2 className="text-clamp-h2 font-bold text-dark-blue-80 leading-tight mb-3 lg:mb-4">
-              Thousands more fun!
+              Thousands More Fun!
             </h2>
             <p className="text-base text-dark-blue-80 mb-8 lg:max-w-lg">
               Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!
