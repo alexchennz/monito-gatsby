@@ -13,11 +13,11 @@ const ProductCard = ({
   return (
     <div className="rounded-xl shadow-md bg-white overflow-hidden flex flex-col p-2">
       {/* Product Image */}
-      <div className="w-full h-[280px] bg-white rounded-lg overflow-hidden">
+      <div className="w-full bg-white rounded-lg overflow-hidden">
         <img 
           src={image} 
           alt={name} 
-          className="w-full h-full object-cover"
+          className="w-full object-cover"
         />
       </div>
       

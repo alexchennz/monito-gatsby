@@ -8,7 +8,7 @@ import { Link } from 'gatsby';
 
 const Hero = () => {
   return (
-    <div className="relative bg-mon-yellow-40 rounded-b-[40px] overflow-hidden pt-24">
+    <div className="relative bg-mon-yellow-40 rounded-b-[20px] xl:rounded-b-[40px] overflow-hidden pt-24">
       
       {/* Decorative elements */}
       <img src={rectangle9} alt="" className="absolute top-[-18rem] left-0 size-[39.7rem]" />
@@ -37,7 +37,7 @@ const Hero = () => {
                 <span>View Intro</span>
                 <img src={playCircle} alt="Play icon" className="w-6 h-6" />
               </Link>
-              <Link to='#' className="bg-white text-dark-blue font-medium py-3 px-7 rounded-3xl ring-2 ring-dark-blue hover:bg-transparent transition-colors flex items-center gap-2">
+              <Link to='#' className="bg-dark-blue-80 text-white font-medium py-3 px-7 rounded-3xl ring-2 ring-dark-blue hover:bg-transparent hover:text-dark-blue transition-colors flex items-center gap-2 ">
                 <span>Explore Now</span>
               </Link>
             </div>
@@ -52,7 +52,7 @@ const Hero = () => {
             />
           </div>
         </div>
-        <img src={rectangle8} alt="" className="absolute bottom-[-17rem] left-[10rem] size-[39.7rem]" />
+        <img src={rectangle8} alt="" className="hidden lg:block absolute bottom-[-17rem] left-[10rem] size-[39.7rem]" />
       </div>
     </div>
   );

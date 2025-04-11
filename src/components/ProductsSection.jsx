@@ -142,7 +142,7 @@ const ProductsSection = () => {
           </div>
         </div>
         
-        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 justify-center gap-10 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 justify-center gap-2 sm:gap-6">
           {products && products.length > 0 ? (
             products.map((product, index) => (
               <ProductCard
