@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductCard from './ProductCard';
+import AnimalCard from './AnimalCard';
 import productImage from '../images/product-image.png';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { FaChevronRight } from "react-icons/fa";
 
 
-const ProductsSection = () => {
+const AnimalsSection = () => {
   // Query data using useStaticQuery hook
   const data = useStaticQuery(graphql`
     query {
@@ -145,10 +145,10 @@ const ProductsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 justify-center gap-2 sm:gap-6">
           {products && products.length > 0 ? (
             products.map((product, index) => (
-              <ProductCard
+              <AnimalCard
                 key={index}
                 image={product.node.image?.url || productImage}
-                productId={`MO${index + 100}`}
+                productId={product.node.name?.name?.toLowerCase().replace(/\s+/g, '-')}
                 name={product.node.name?.name || 'Pet Name'}
                 gender={product.node.gene || 'Unknown'}
                 age={product.node.age || 'Unknown'}
@@ -167,4 +167,4 @@ const ProductsSection = () => {
   );
 };
 
-export default ProductsSection;
+export default AnimalsSection;

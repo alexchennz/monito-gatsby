@@ -2,7 +2,8 @@ import * as React from "react"
 import Header from "../components/Header"
 import Hero from "../components/Hero"
 import HomeBanner from "../components/HomeBanner"
-import ProductsSection from "../components/ProductsSection"
+import AnimalsSection from "../components/AnimalsSection"
+import HomeBottomBanner from "../components/HomeBottomBanner"
 
 
 const IndexPage = () => {
@@ -10,8 +11,9 @@ const IndexPage = () => {
     <main>
       <Header />
       <Hero />
-      <ProductsSection />
+      <AnimalsSection />
       <HomeBanner />
+      <HomeBottomBanner />
     </main>
   )
 }
