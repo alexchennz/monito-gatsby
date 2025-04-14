@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const ImageCarousel = ({ mainImage, otherImages }) => {
@@ -27,21 +27,60 @@ const ImageCarousel = ({ mainImage, otherImages }) => {
   
   if (!allImages.length) {
     return (
-      <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+      <div className="bg-gray-200 rounded-lg w-full flex items-center justify-center">
         <p className="text-gray-500">No images available</p>
       </div>
     );
   }
   
+  // Function to render the appropriate image component
+  const renderImage = (img, className) => {
+    // If it's a processed GatsbyImage
+    if (img && typeof img === 'object' && img.images) {
+      return (
+        <GatsbyImage 
+          image={img} 
+          alt="Animal image" 
+          className={className}
+        />
+      );
+    }
+    
+    // If it's an object with url property (raw Contentful image)
+    if (img && typeof img === 'object' && img.url) {
+      return (
+        <img 
+          src={img.url} 
+          alt="Animal image" 
+          className={className}
+        />
+      );
+    }
+    
+    // If it's a string URL
+    if (typeof img === 'string') {
+      return (
+        <img 
+          src={img} 
+          alt="Animal image" 
+          className={className}
+        />
+      );
+    }
+    
+    // Fallback
+    return (
+      <div className={`${className} bg-gray-200 flex items-center justify-center`}>
+        <span className="text-gray-500">Image unavailable</span>
+      </div>
+    );
+  };
+  
   return (
     <div className="space-y-4">
       {/* Main image display */}
-      <div className="relative rounded-lg overflow-hidden h-96 bg-gray-100">
-        <GatsbyImage 
-          image={allImages[currentIndex]} 
-          alt={`Animal image ${currentIndex + 1}`}
-          className="w-full h-full object-cover"
-        />
+      <div className="relative rounded-lg overflow-hidden w-full bg-gray-100">
+        {renderImage(allImages[currentIndex], "w-full h-full object-cover")}
         
         {/* Navigation arrows */}
         {allImages.length > 1 && (
@@ -74,11 +113,7 @@ const ImageCarousel = ({ mainImage, otherImages }) => {
               onClick={() => handleThumbnailClick(index)}
               aria-label={`View image ${index + 1}`}
             >
-              <GatsbyImage 
-                image={img} 
-                alt={`Thumbnail ${index + 1}`} 
-                className="w-full h-full object-cover"
-              />
+              {renderImage(img, "w-full h-full object-cover")}
             </button>
           ))}
         </div>
@@ -88,8 +123,16 @@ const ImageCarousel = ({ mainImage, otherImages }) => {
 };
 
 ImageCarousel.propTypes = {
-  mainImage: PropTypes.object,
-  otherImages: PropTypes.arrayOf(PropTypes.object)
+  mainImage: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ]),
+  otherImages: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string
+    ])
+  )
 };
 
 export default ImageCarousel;

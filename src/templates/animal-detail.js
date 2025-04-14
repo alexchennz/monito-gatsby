@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 import { FaHeart, FaShare, FaHome, FaChevronRight, FaCommentDots, FaPhoneAlt } from 'react-icons/fa';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { getImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import ImageCarousel from '../components/ImageCarousel';
@@ -10,7 +10,7 @@ import Header from '../components/Header';
 
 const AnimalDetailTemplate = ({ data, pageContext }) => {
   const animal = data.contentfulMonitoAnimal;
-  console.log(animal);
+  
   
   if (!animal) {
     return <div>No animal data available</div>;
@@ -19,6 +19,7 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
   // Get images
   const mainImage = animal.image?.gatsbyImageData ? getImage(animal.image.gatsbyImageData) : null;
   const otherImages = animal.otherImages?.map(img => img?.gatsbyImageData ? getImage(img.gatsbyImageData) : null) || [];
+  console.log("otherImages", otherImages)
 
   // Animal characteristics
   const characteristics = [
@@ -49,7 +50,7 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
   return (
     <main>
       <Header />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-24 pb-8"> 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Left Column - Image Carousel */}
@@ -153,10 +154,10 @@ export const query = graphql`
       dewormed
       gene
       image {
-        gatsbyImageData(width: 550, height: 550)
+        gatsbyImageData(width: 700, height: 700)
       }
       otherImages {
-        gatsbyImageData(width: 550, height: 550)
+        gatsbyImageData(width: 700, height: 700)
       }
       location
       price
@@ -181,8 +182,8 @@ AnimalDetailTemplate.propTypes = {
       age: PropTypes.string,
       cert: PropTypes.string,
       color: PropTypes.string,
-      dewormed: PropTypes.bool,
-      gene: PropTypes.string,
+      dewormed: PropTypes.string,
+      gene: PropTypes.array,
       image: PropTypes.shape({
         gatsbyImageData: PropTypes.object
       }),
@@ -192,11 +193,11 @@ AnimalDetailTemplate.propTypes = {
         })
       ),
       location: PropTypes.string,
-      price: PropTypes.string,
+      price: PropTypes.number,
       size: PropTypes.string,
       sku: PropTypes.string,
-      vaccinated: PropTypes.bool,
-      microchip: PropTypes.bool,
+      vaccinated: PropTypes.string,
+      microchip: PropTypes.string,
       publishedDate: PropTypes.string
     })
   }),
