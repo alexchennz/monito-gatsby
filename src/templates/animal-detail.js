@@ -1,20 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
-import { FaArrowLeft, FaHeart, FaShare } from 'react-icons/fa';
+import { FaHeart, FaShare, FaHome, FaChevronRight, FaCommentDots, FaPhoneAlt } from 'react-icons/fa';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import ImageCarousel from '../components/ImageCarousel';
+import Header from '../components/Header';
 
 const AnimalDetailTemplate = ({ data, pageContext }) => {
   const animal = data.contentfulMonitoAnimal;
+  console.log(animal);
   
   if (!animal) {
     return <div>No animal data available</div>;
   }
 
-  // Get main image
+  // Get images
   const mainImage = animal.image?.gatsbyImageData ? getImage(animal.image.gatsbyImageData) : null;
+  const otherImages = animal.otherImages?.map(img => img?.gatsbyImageData ? getImage(img.gatsbyImageData) : null) || [];
 
   // Animal characteristics
   const characteristics = [
@@ -43,84 +47,94 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Link to="/" className="inline-flex items-center text-dark-blue mb-6 hover:underline">
-        <FaArrowLeft className="mr-2" />
-        Back to all animals
-      </Link>
+    <main>
+      <Header />
+      <div className="container mx-auto px-4 py-8">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            {/* Left Column - Image Carousel */}
+            <div className="p-6">
+              <ImageCarousel mainImage={mainImage} otherImages={otherImages} />
+            </div>
       
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Animal Image Section */}
-          <div className="space-y-4">
-            {/* Main Image */}
-            <div className="rounded-lg overflow-hidden h-80 bg-gray-100">
-              {mainImage ? (
-                <GatsbyImage 
-                  image={mainImage} 
-                  alt="Animal" 
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-500">No image available</span>
+            {/* Right Column - Animal Details */}
+            <div className="p-6 border-l border-gray-200">
+              {/* Breadcrumb Navigation */}
+              <div className="flex items-center text-sm text-gray-500 mb-4">
+                <Link to="/" className="flex items-center hover:text-dark-blue">
+                  <FaHome className="mr-1" />
+                  <span>Home</span>
+                </Link>
+                <FaChevronRight className="mx-2 text-xs" />
+                <Link to="/" className="hover:text-dark-blue">Pets</Link>
+                <FaChevronRight className="mx-2 text-xs" />
+                <span className="text-dark-blue font-medium">{animal.name?.name || 'Pet Details'}</span>
+              </div>
+      
+              {/* SKU */}
+              <div className="text-sm text-gray-500 mb-3">
+                SKU: {animal.sku || 'N/A'}
+              </div>
+      
+              {/* Title and Price */}
+              <div className="mb-6">
+                <h1 className="text-3xl font-bold text-dark-blue-80">
+                  {animal.name?.name || 'Pet Details'}
+                </h1>
+                <p className="text-xl font-bold text-dark-blue mt-2">${animal.price || 'Contact for price'}</p>
+              </div>
+      
+              {/* Action Buttons */}
+              <div className="flex space-x-4 mb-6">
+                <button className="flex-1 bg-dark-blue text-white py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors flex items-center justify-center">
+                  <FaPhoneAlt className="mr-2" />
+                  Contact Us
+                </button>
+                <button className="flex-1 border-2 border-dark-blue text-dark-blue py-3 px-6 rounded-full hover:bg-dark-blue hover:text-white transition-colors flex items-center justify-center">
+                  <FaCommentDots className="mr-2" />
+                  Chat with Monito
+                </button>
+              </div>
+      
+              {/* Characteristics - One per row with dividers */}
+              <div className="mb-6">
+                {characteristics.map((item, index) => (
+                  <div key={index} className="py-3 border-b border-gray-200 flex justify-between">
+                    <span className="text-gray-600">{item.label}</span>
+                    <span className="font-semibold">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+      
+              {/* Additional Information */}
+              {animal.additionalInformation?.raw && (
+                <div className="py-4 border-t border-gray-200">
+                  <h2 className="text-xl font-bold mb-2">Additional Information</h2>
+                  <div className="text-gray-700">
+                    {renderRichText(animal.additionalInformation, options)}
+                  </div>
                 </div>
               )}
-            </div>
-            
-            {/* SKU and Published Date */}
-            <div className="flex justify-between text-sm text-gray-500">
-              <div>SKU: {animal.sku || 'N/A'}</div>
-              <div>Published: {animal.publishedDate || 'N/A'}</div>
-            </div>
-          </div>
-          
-          {/* Animal Details Section */}
-          <div className="space-y-6">
-            <div>
-              <span className="text-sm text-neutral-60 font-medium">ID: {pageContext.productId}</span>
-              <h1 className="text-3xl font-bold text-dark-blue-80 mt-1">
-                {animal.name?.name || 'Pet Details'}
-              </h1>
-              <p className="text-lg text-dark-blue mt-2">${animal.price || 'Contact for price'}</p>
-            </div>
-            
-            {/* Characteristics */}
-            <div className="grid grid-cols-2 gap-4 py-4 border-b border-gray-200">
-              {characteristics.map((item, index) => (
-                <div key={index}>
-                  <span className="text-sm text-neutral-60">{item.label}:</span>
-                  <p className="font-bold">{item.value}</p>
+      
+              {/* Published Date and Share */}
+              <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+                <div className="text-sm text-gray-500">
+                  Published: {animal.publishedDate || 'N/A'}
                 </div>
-              ))}
-            </div>
-            
-            {/* Additional Information */}
-            {animal.additionalInformation?.raw && (
-              <div className="py-4 border-b border-gray-200">
-                <h2 className="text-xl font-bold mb-2">Additional Information</h2>
-                <div className="text-gray-700">
-                  {renderRichText(animal.additionalInformation, options)}
+                <div className="flex space-x-3">
+                  <button className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100">
+                    <FaHeart className="text-gray-500" />
+                  </button>
+                  <button className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100">
+                    <FaShare className="text-gray-500" />
+                  </button>
                 </div>
               </div>
-            )}
-            
-            {/* Action Buttons */}
-            <div className="flex space-x-4 mt-6">
-              <button className="flex-1 bg-dark-blue text-white py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors flex items-center justify-center">
-                Contact Seller
-              </button>
-              <button className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100">
-                <FaHeart className="text-gray-500" />
-              </button>
-              <button className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100">
-                <FaShare className="text-gray-500" />
-              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
@@ -139,6 +153,9 @@ export const query = graphql`
       dewormed
       gene
       image {
+        gatsbyImageData(width: 550, height: 550)
+      }
+      otherImages {
         gatsbyImageData(width: 550, height: 550)
       }
       location
@@ -169,6 +186,11 @@ AnimalDetailTemplate.propTypes = {
       image: PropTypes.shape({
         gatsbyImageData: PropTypes.object
       }),
+      otherImages: PropTypes.arrayOf(
+        PropTypes.shape({
+          gatsbyImageData: PropTypes.object
+        })
+      ),
       location: PropTypes.string,
       price: PropTypes.string,
       size: PropTypes.string,
