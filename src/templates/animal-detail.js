@@ -73,13 +73,13 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
               </div>
       
               {/* SKU */}
-              <div className="text-sm text-gray-500 mb-3">
-                SKU: {animal.sku || 'N/A'}
+              <div className="text-sm text-neutral-40 mb-3">
+                SKU: {`#${animal.sku}` || 'N/A'}
               </div>
       
               {/* Title and Price */}
               <div className="mb-6">
-                <h1 className="text-3xl font-bold text-dark-blue-80">
+                <h1 className="text-2xl font-bold text-dark-blue-80">
                   {animal.name?.name || 'Pet Details'}
                 </h1>
                 <p className="text-xl font-bold text-dark-blue mt-2">${animal.price || 'Contact for price'}</p>

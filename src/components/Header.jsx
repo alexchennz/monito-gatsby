@@ -2,6 +2,7 @@ import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { HiMenu } from 'react-icons/hi';
 import monitoLogo from '../images/monito-logo.svg';
+import { Link } from 'gatsby';
 
 const Header = () => {
   return (
@@ -10,15 +11,15 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={monitoLogo} alt="Monito Logo" className="h-10" />
+            <Link to="/"><img src={monitoLogo} alt="Monito Logo" className="h-10" /></Link>
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-dark-blue font-bold hover:text-dark-blue-60">Home</a>
-            <a href="#" className="text-dark-blue font-bold hover:text-dark-blue-60">Category</a>
-            <a href="#" className="text-dark-blue font-bold hover:text-dark-blue-60">About</a>
-            <a href="#" className="text-dark-blue font-bold hover:text-dark-blue-60">Contact</a>
+            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Home</Link>
+            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Category</Link>
+            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">About</Link>
+            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Contact</Link>
           </nav>
 
           {/* Search Bar */}

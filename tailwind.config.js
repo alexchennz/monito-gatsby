@@ -23,7 +23,8 @@ module.exports = {
         "orange-shine": "#FF912C",
         "blue-sea": "#00A7E7",
         "neutral": "#00171F",
-        "neutral-60": "#667479"
+        "neutral-60": "#667479",
+        "neutral-40": "#99A2A5"
       }
     },
   },

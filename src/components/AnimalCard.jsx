@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const AnimalCard = ({ 
   image, 
@@ -16,8 +17,8 @@ const AnimalCard = ({
       <div className="rounded-xl shadow-md bg-white overflow-hidden flex flex-col p-2 hover:shadow-lg transition-shadow">
         {/* Product Image */}
         <div className="w-full bg-white rounded-lg overflow-hidden">
-          <img 
-            src={image} 
+          <GatsbyImage 
+            image={image} 
             alt={name} 
             className="w-full object-cover"
           />
@@ -48,6 +49,7 @@ const AnimalCard = ({
       </div>
     </Link>
   );
+
 };
 
 AnimalCard.propTypes = {
@@ -58,6 +60,7 @@ AnimalCard.propTypes = {
   age: PropTypes.string.isRequired,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   color: PropTypes.string
+
 };
 
 export default AnimalCard;

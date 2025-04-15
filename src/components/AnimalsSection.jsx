@@ -2,6 +2,7 @@ import React from 'react';
 import AnimalCard from './AnimalCard';
 import productImage from '../images/product-image.png';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { FaChevronRight } from "react-icons/fa";
 
 
@@ -16,7 +17,7 @@ const AnimalsSection = () => {
             age
             price
             image {
-              url
+              gatsbyImageData(width: 500, height: 500)
             }
             gene
             name {
@@ -147,7 +148,7 @@ const AnimalsSection = () => {
             products.map((product, index) => (
               <AnimalCard
                 key={index}
-                image={product.node.image?.url || productImage}
+                image={product.node.image?.gatsbyImageData || productImage}
                 productId={product.node.name?.name?.toLowerCase().replace(/\s+/g, '-')}
                 name={product.node.name?.name || 'Pet Name'}
                 gender={product.node.gene || 'Unknown'}
