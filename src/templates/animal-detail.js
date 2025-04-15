@@ -7,6 +7,7 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import ImageCarousel from '../components/ImageCarousel';
 import Header from '../components/Header';
+import CustomerCarousel from '../components/CustomerCarousel';
 
 const AnimalDetailTemplate = ({ data, pageContext }) => {
   const animal = data.contentfulMonitoAnimal;
@@ -19,7 +20,8 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
   // Get images
   const mainImage = animal.image?.gatsbyImageData ? getImage(animal.image.gatsbyImageData) : null;
   const otherImages = animal.otherImages?.map(img => img?.gatsbyImageData ? getImage(img.gatsbyImageData) : null) || [];
-  console.log("otherImages", otherImages)
+  const customers = animal.customers?.map(customer => customer?.gatsbyImageData ? getImage(customer.gatsbyImageData) : null) || [];
+  // console.log("customers", customers)
 
   // Animal characteristics
   const characteristics = [
@@ -55,15 +57,26 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
     <main>
       <Header />
       <div className="container mx-auto px-4 pt-24 pb-8"> 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-white rounded-xl border border-[#EBEEEF] overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Left Column - Image Carousel */}
             <div className="p-6">
               <ImageCarousel mainImage={mainImage} otherImages={otherImages} />
+              {/* Pet Health Banner */}
+              <div className="mt-4 rounded-lg bg-mon-yellow-40 py-3 px-4 flex items-center justify-between">
+                <div className="flex items-center">
+                  <img src="/images/dog-icon.svg" alt="Dog icon" className="size-6 mr-2" />
+                  <span className="text-dark-blue-80 font-bold">100% health guarantee for pets</span>
+                </div>
+                <div className="flex items-center">
+                  <img src="/images/dog-icon-2.svg" alt="Dog icon" className="size-6 mr-2" />
+                  <span className="text-dark-blue-80 font-bold">100% guarantee of pet identification</span>
+                </div>
+              </div>
             </div>
       
             {/* Right Column - Animal Details */}
-            <div className="p-6 border-l border-gray-200">
+            <div className="p-6">
               {/* Breadcrumb Navigation */}
               <div className="flex items-center text-sm text-gray-500 mb-4">
                 <Link to="/" className="flex items-center hover:text-dark-blue">
@@ -117,7 +130,7 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
       
               {/* Additional Information */}
               {animal.additionalInformation?.raw && (
-                  <div className="py-3 border-b border-gray-200 flex *:text-neutral/60">
+                  <div className="py-3 flex *:text-neutral/60">
                     <span className="w-1/3">Additional Information</span>
                     <span className="w-2/3 flex items-start"><span className='pr-1'>: </span>{renderRichText(animal.additionalInformation, options)}</span>
                   </div>
@@ -127,6 +140,14 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
             </div>
           </div>
         </div>
+        
+        {/* Customer Carousel Section */}
+        {customers && customers.length > 0 && (
+          <div className="mt-12">
+            <h4 className="text-clamp-h4 font-bold text-neutral mb-4">Our lovely customer</h4>
+            <CustomerCarousel customers={customers} />
+          </div>
+        )}
       </div>
     </main>
   );
@@ -151,6 +172,9 @@ export const query = graphql`
       }
       otherImages {
         gatsbyImageData(width: 700, height: 700)
+      }
+      customers {
+        gatsbyImageData(width: 700, height: 544)
       }
       location
       price
@@ -181,6 +205,11 @@ AnimalDetailTemplate.propTypes = {
         gatsbyImageData: PropTypes.object
       }),
       otherImages: PropTypes.arrayOf(
+        PropTypes.shape({
+          gatsbyImageData: PropTypes.object
+        })
+      ),
+      customers: PropTypes.arrayOf(
         PropTypes.shape({
           gatsbyImageData: PropTypes.object
         })
