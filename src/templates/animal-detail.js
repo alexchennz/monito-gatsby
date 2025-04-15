@@ -37,7 +37,11 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
   // Rich text options for additional information
   const options = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-4">{children}</p>,
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <span style={{ whiteSpace: 'pre-line' }}>
+          {children}
+        </span>
+      ),
       [BLOCKS.HEADING_4]: (node, children) => <h4 className="text-lg font-bold mb-2">{children}</h4>,
       [INLINES.HYPERLINK]: (node, children) => (
         <a href={node.data.uri} className="text-dark-blue underline" target="_blank" rel="noopener noreferrer">
@@ -98,39 +102,28 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
               </div>
       
               {/* Characteristics - One per row with dividers */}
-              <div className="mb-6">
                 {characteristics.map((item, index) => (
-                  <div key={index} className="py-3 border-b border-gray-200 flex justify-between">
-                    <span className="text-gray-600">{item.label}</span>
-                    <span className="font-semibold">{item.value}</span>
+                  <div key={index} className="py-3 border-b border-gray-200 flex *:text-neutral/60">
+                    <span className="w-1/3">{item.label}</span>
+                    <span className="w-2/3">: {item.value}</span>
                   </div>
                 ))}
+              
+              {/* Published Date and Share */}
+              <div className="py-3 border-b border-gray-200 flex *:text-neutral/60">
+                <span className="w-1/3">Published Date</span>
+                <span className="w-2/3">: {animal.publishedDate || 'N/A'}</span>
               </div>
       
               {/* Additional Information */}
               {animal.additionalInformation?.raw && (
-                <div className="py-4 border-t border-gray-200">
-                  <h2 className="text-xl font-bold mb-2">Additional Information</h2>
-                  <div className="text-gray-700">
-                    {renderRichText(animal.additionalInformation, options)}
+                  <div className="py-3 border-b border-gray-200 flex *:text-neutral/60">
+                    <span className="w-1/3">Additional Information</span>
+                    <span className="w-2/3 flex items-start"><span className='pr-1'>: </span>{renderRichText(animal.additionalInformation, options)}</span>
                   </div>
-                </div>
               )}
       
-              {/* Published Date and Share */}
-              <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
-                <div className="text-sm text-gray-500">
-                  Published: {animal.publishedDate || 'N/A'}
-                </div>
-                <div className="flex space-x-3">
-                  <button className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100">
-                    <FaHeart className="text-gray-500" />
-                  </button>
-                  <button className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100">
-                    <FaShare className="text-gray-500" />
-                  </button>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -165,7 +158,7 @@ export const query = graphql`
       sku
       vaccinated
       microchip
-      publishedDate(formatString: "j-M-Y")
+      publishedDate(formatString: "DD-MM-YYYY")
     }
   }
 `;
