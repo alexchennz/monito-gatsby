@@ -28,7 +28,7 @@ const AnimalCard = ({
         <div className="p-2 flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             {/* Product Name */}
-            <h3 className="font-bold text-base text-dark-blue-80">{name}</h3>
+            <h3 className="font-bold text-base text-dark-blue-80 min-h-16">{name}</h3>
             
             {/* Product Attributes */}
             <div className="flex flex-row w-full">

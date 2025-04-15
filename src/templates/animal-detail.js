@@ -8,6 +8,7 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import ImageCarousel from '../components/ImageCarousel';
 import Header from '../components/Header';
 import CustomerCarousel from '../components/CustomerCarousel';
+import Footer from '../components/Footer';
 
 const AnimalDetailTemplate = ({ data, pageContext }) => {
   const animal = data.contentfulMonitoAnimal;
@@ -149,6 +150,7 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
           </div>
         )}
       </div>
+      <Footer />
     </main>
   );
 };
