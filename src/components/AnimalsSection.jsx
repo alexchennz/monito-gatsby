@@ -31,7 +31,6 @@ const AnimalsSection = () => {
   
   // Access the edges array from the GraphQL data
   const products = data?.allContentfulMonitoAnimal?.edges || [];
-  console.log("Products data:", products);
 
   return (
     <section className="py-16 bg-white">
@@ -43,7 +42,7 @@ const AnimalsSection = () => {
           </div>
           <div>
 
-          <Link to='#' className=" text-dark-blue text-sm leading-none py-3 px-7 rounded-3xl hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
+          <Link to='/pets' className=" text-dark-blue text-sm leading-none py-3 px-7 rounded-3xl hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
               <span>View more</span>
               <FaChevronRight className="size-3" />
             </Link>

@@ -53,10 +53,10 @@ const AnimalCard = ({
 };
 
 AnimalCard.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
   productId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  gender: PropTypes.string.isRequired,
+  gender: PropTypes.array.isRequired,
   age: PropTypes.string.isRequired,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   color: PropTypes.string

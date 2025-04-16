@@ -23,10 +23,10 @@ const HomeBottomBanner = () => {
               Adopt a pet and give it a home, it will be love you back unconditionally.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to='#' className="bg-dark-blue text-white font-medium py-3 px-7 rounded-3xl ring-2 ring-dark-blue hover:text-dark-blue xl:hover:bg-transparent transition-colors flex items-center gap-2">
+                <Link to='/pets' className="bg-dark-blue text-white font-medium py-3 px-7 rounded-3xl ring-2 ring-dark-blue hover:text-dark-blue xl:hover:bg-transparent transition-colors flex items-center gap-2">
                   <span>Explore Now</span>
                 </Link>
-                <Link to='#' className=" text-dark-blue-80 font-medium py-3 px-7 rounded-3xl bg-white xl:bg-transparent xl:hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
+                <Link to='/about' className=" text-dark-blue-80 font-medium py-3 px-7 rounded-3xl bg-white xl:bg-transparent xl:hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
                   <span>View Intro</span>
                   <img src={playCircle} alt="Play icon" className="w-6 h-6" />
                 </Link>
