@@ -5,14 +5,15 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import { FaChevronRight } from "react-icons/fa";
 
 
-const AnimalsSection = () => {
+const MoreAnimals = () => {
   // Query data using useStaticQuery hook
   const data = useStaticQuery(graphql`
     query {
-      allContentfulMonitoAnimal(limit: 10, sort: {createdAt: DESC}) {
+      allContentfulMonitoAnimal(limit: 5, sort: {updatedAt: ASC}) {
         totalCount
         edges {
           node {
+            id
             age
             price
             image {
@@ -31,7 +32,6 @@ const AnimalsSection = () => {
   
   // Access the edges array from the GraphQL data
   const products = data?.allContentfulMonitoAnimal?.edges || [];
-  console.log("Products data:", products);
 
   return (
     <section className="py-16 bg-white">
@@ -39,14 +39,7 @@ const AnimalsSection = () => {
         <div className="flex md:flex-row justify-between items-center">
           <div>
             <p className="text-black text-sm">Whats new?</p>
-            <h4 className="text-clamp-h4 font-bold text-dark-blue-80 mb-4">Take a look at some of our pets</h4>
-          </div>
-          <div>
-
-          <Link to='#' className=" text-dark-blue text-sm leading-none py-3 px-7 rounded-3xl hover:bg-white transition-colors flex items-center gap-2 ring-2 ring-dark-blue">
-              <span>View more</span>
-              <FaChevronRight className="size-3" />
-            </Link>
+            <h4 className="text-clamp-h4 font-bold text-dark-blue-80 mb-4">See more puppies</h4>
           </div>
         </div>
         
@@ -75,4 +68,4 @@ const AnimalsSection = () => {
   );
 };
 
-export default AnimalsSection;
+export default MoreAnimals;

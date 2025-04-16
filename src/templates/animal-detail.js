@@ -9,6 +9,7 @@ import ImageCarousel from '../components/ImageCarousel';
 import Header from '../components/Header';
 import CustomerCarousel from '../components/CustomerCarousel';
 import Footer from '../components/Footer';
+import MoreAnimals from '../components/MoreAnimals';
 
 const AnimalDetailTemplate = ({ data, pageContext }) => {
   const animal = data.contentfulMonitoAnimal;
@@ -147,6 +148,9 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
             <CustomerCarousel customers={customers} />
           </div>
         )}
+
+        {/* More Animals Section */}
+        <MoreAnimals />
       </div>
       <Footer />
     </main>
