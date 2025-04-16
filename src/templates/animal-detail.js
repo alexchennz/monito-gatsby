@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
-import { FaHeart, FaShare, FaHome, FaChevronRight, FaCommentDots, FaPhoneAlt } from 'react-icons/fa';
+import { FaHome, FaChevronRight, FaCommentDots, FaPhoneAlt } from 'react-icons/fa';
 import { getImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
@@ -41,9 +41,7 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
   const options = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <span style={{ whiteSpace: 'pre-line' }}>
-          {children}
-        </span>
+        <p dangerouslySetInnerHTML={{ __html: children.toString().replace(/,/g, '') }} />
       ),
       [BLOCKS.HEADING_4]: (node, children) => <h4 className="text-lg font-bold mb-2">{children}</h4>,
       [INLINES.HYPERLINK]: (node, children) => (
@@ -133,7 +131,7 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
               {animal.additionalInformation?.raw && (
                   <div className="py-3 flex *:text-neutral/60">
                     <span className="w-1/3">Additional Information</span>
-                    <span className="w-2/3 flex items-start"><span className='pr-1'>: </span>{renderRichText(animal.additionalInformation, options)}</span>
+                    <div className="w-2/3 flex items-start"><span className='pr-1'>: </span><div style={{ whiteSpace: 'pre-line' }}>{renderRichText(animal.additionalInformation, options)}</div></div>
                   </div>
               )}
       
