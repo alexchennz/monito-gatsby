@@ -17,7 +17,7 @@ const Footer = () => {
             <div>
               <ul className="flex flex-row justify-between items-center gap-8">
                 <li><Link to="/" className="text-neutral hover:text-dark-blue transition-colors">Home</Link></li>
-                <li><Link to="/" className="text-neutral hover:text-dark-blue transition-colors">Categories</Link></li>
+                <li><Link to="/pets" className="text-neutral hover:text-dark-blue transition-colors">Pets</Link></li>
                 <li><Link to="/about" className="text-neutral hover:text-dark-blue transition-colors">About</Link></li>
                 <li><Link to="/contact" className="text-neutral hover:text-dark-blue transition-colors">Contact</Link></li>
               </ul>
