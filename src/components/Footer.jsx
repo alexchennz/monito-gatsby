@@ -18,8 +18,8 @@ const Footer = () => {
               <ul className="flex flex-row justify-between items-center gap-8">
                 <li><Link to="/" className="text-neutral hover:text-dark-blue transition-colors">Home</Link></li>
                 <li><Link to="/" className="text-neutral hover:text-dark-blue transition-colors">Categories</Link></li>
-                <li><Link to="/" className="text-neutral hover:text-dark-blue transition-colors">About</Link></li>
-                <li><Link to="/" className="text-neutral hover:text-dark-blue transition-colors">Contact</Link></li>
+                <li><Link to="/about" className="text-neutral hover:text-dark-blue transition-colors">About</Link></li>
+                <li><Link to="/contact" className="text-neutral hover:text-dark-blue transition-colors">Contact</Link></li>
               </ul>
             </div>
 
@@ -46,7 +46,7 @@ const Footer = () => {
 
         {/* Bottom Section with Copyright and Terms */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm">
-          <p className="text-neutral-60 mb-4 md:mb-0">© {currentYear} Monito. All rights reserved.</p>
+          <p className="text-neutral-60 mb-4 md:mb-0"> {currentYear} Monito. All rights reserved.</p>
           <Link to="/">
               <img src={monitoLogo} alt="Monito" className="h-10 mb-4" />
             </Link>

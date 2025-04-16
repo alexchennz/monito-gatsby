@@ -18,8 +18,8 @@ const Header = () => {
           <nav className="hidden md:flex space-x-8">
             <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Home</Link>
             <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Category</Link>
-            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">About</Link>
-            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Contact</Link>
+            <Link to="/about" className="text-dark-blue font-bold hover:text-dark-blue-60">About</Link>
+            <Link to="/contact" className="text-dark-blue font-bold hover:text-dark-blue-60">Contact</Link>
           </nav>
 
           {/* Search Bar */}

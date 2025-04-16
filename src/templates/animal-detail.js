@@ -104,10 +104,10 @@ const AnimalDetailTemplate = ({ data, pageContext }) => {
       
               {/* Action Buttons */}
               <div className="flex space-x-4 mb-6">
-                <button className="flex-1 bg-dark-blue text-white py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors flex items-center justify-center">
+                <Link to="/contact" className="flex-1 bg-dark-blue text-white py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors flex items-center justify-center">
                   <FaPhoneAlt className="mr-2" />
                   Contact Us
-                </button>
+                </Link>
                 <button className="flex-1 border-2 border-dark-blue text-dark-blue py-3 px-6 rounded-full hover:bg-dark-blue hover:text-white transition-colors flex items-center justify-center">
                   <FaCommentDots className="mr-2" />
                   Chat with Monito
