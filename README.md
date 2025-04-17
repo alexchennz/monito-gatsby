@@ -9,7 +9,7 @@
 
 ## Deployed to Netlify
 
-[Deployed](https://statuesque-paprenjak-abfd19.netlify.app/)
+https://statuesque-paprenjak-abfd19.netlify.app/
 
 ## 🚀 Quick start
 
