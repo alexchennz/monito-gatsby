@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useStaticQuery, graphql, navigate } from 'gatsby';
+import { useStaticQuery, graphql, navigate, Link } from 'gatsby';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import monitoLogo from '../images/monito-logo.svg';
@@ -96,11 +96,11 @@ const Header = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <div onClick={() => navigate('/')}>Home</div>
-            <div onClick={() => navigate('/pets')}>Pets</div>
-            <div onClick={() => navigate('/about')}>About</div>
-            <div onClick={() => navigate('/contact')}>Contact</div>
+          <nav className="hidden md:flex space-x-8 *:font-semibold">
+            <Link to="/">Home</Link>
+            <Link to="/pets">Pets</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
           </nav>
 
           {/* Search Bar */}
@@ -184,39 +184,24 @@ const Header = () => {
           <nav className="flex flex-col space-y-4 mb-4">
             <div 
               className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
-              onClick={() => {
-                navigate('/');
-                setMobileMenuOpen(false);
-              }}
+              
             >
-              Home
+              <Link to="/">Home</Link>
             </div>
             <div 
               className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
-              onClick={() => {
-                navigate('/pets');
-                setMobileMenuOpen(false);
-              }}
             >
-              Pets
+              <Link to="/pets">Pets</Link>
             </div>
             <div 
               className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
-              onClick={() => {
-                navigate('/about');
-                setMobileMenuOpen(false);
-              }}
             >
-              About
+              <Link to="/about">About</Link>
             </div>
             <div 
               className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
-              onClick={() => {
-                navigate('/contact');
-                setMobileMenuOpen(false);
-              }}
             >
-              Contact
+              <Link to="/contact">Contact</Link>
             </div>
           </nav>
           
