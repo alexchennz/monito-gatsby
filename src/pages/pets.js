@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import productImage from '../images/product-image.png';
 import AnimalCard from '../components/AnimalCard';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { FaChevronRight, FaPaw, FaFilter } from "react-icons/fa";
+import { FaPaw } from "react-icons/fa";
 
 
 const PetsPage = () => {

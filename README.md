@@ -7,6 +7,10 @@
   Gatsby Minimal Starter
 </h1>
 
+## Deployed to Netlify
+
+[Deployed](https://statuesque-paprenjak-abfd19.netlify.app/)
+
 ## 🚀 Quick start
 
 1.  **Create a Gatsby site.**

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, navigate } from 'gatsby';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import monitoLogo from '../images/monito-logo.svg';
@@ -54,6 +54,15 @@ const Header = () => {
     }
   };
 
+  // Handle result click and navigation
+  const handleResultClick = (animalName) => {
+    const path = `/animal/${animalName.toLowerCase().replace(/\s+/g, '-')}`;
+    // Use setTimeout to allow the click to complete before navigating
+    setTimeout(() => {
+      navigate(path);
+    }, 100);
+  };
+
   // Close search results when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -82,16 +91,16 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/">
-            <img src={monitoLogo} alt="Monito" className="h-12" />
-          </Link>
+          <div onClick={() => navigate('/')}>
+            <img src={monitoLogo} alt="Monito" className="h-12 cursor-pointer" />
+          </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-dark-blue font-bold hover:text-dark-blue-60">Home</Link>
-            <Link to="/pets" className="text-dark-blue font-bold hover:text-dark-blue-60">Pets</Link>
-            <Link to="/about" className="text-dark-blue font-bold hover:text-dark-blue-60">About</Link>
-            <Link to="/contact" className="text-dark-blue font-bold hover:text-dark-blue-60">Contact</Link>
+            <div onClick={() => navigate('/')}>Home</div>
+            <div onClick={() => navigate('/pets')}>Pets</div>
+            <div onClick={() => navigate('/about')}>About</div>
+            <div onClick={() => navigate('/contact')}>Contact</div>
           </nav>
 
           {/* Search Bar */}
@@ -113,11 +122,10 @@ const Header = () => {
             {showResults && searchResults.length > 0 && (
               <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
                 {searchResults.map(animal => (
-                  <Link 
+                  <div 
                     key={animal.id} 
-                    to={`/animal/${animal.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="flex items-center p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
-                    onClick={() => setShowResults(false)}
+                    className="flex items-center p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer"
+                    onClick={() => handleResultClick(animal.name)}
                   >
                     {animal.image ? (
                       <GatsbyImage 
@@ -131,7 +139,7 @@ const Header = () => {
                       </div>
                     )}
                     <span className="text-dark-blue font-semibold">{animal.name}</span>
-                  </Link>
+                  </div>
                 ))}
               </div>
             )}
@@ -146,12 +154,12 @@ const Header = () => {
 
           {/* Join the Community Link */}
           <div className="hidden lg:block">
-            <a 
-              href="#" 
-              className="bg-dark-blue text-white hover:bg-dark-blue-80 font-bold rounded-3xl inline-flex items-center justify-center text-clamp-p py-3 px-7 leading-6"
+            <div 
+              className="bg-dark-blue text-white hover:bg-dark-blue-80 font-bold rounded-3xl inline-flex items-center justify-center text-clamp-p py-3 px-7 leading-6 cursor-pointer"
+              onClick={() => navigate('#')}
             >
               Join the community
-            </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -174,34 +182,42 @@ const Header = () => {
           }`}
         >
           <nav className="flex flex-col space-y-4 mb-4">
-            <Link 
-              to="/" 
-              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1"
-              onClick={() => setMobileMenuOpen(false)}
+            <div 
+              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
+              onClick={() => {
+                navigate('/');
+                setMobileMenuOpen(false);
+              }}
             >
               Home
-            </Link>
-            <Link 
-              to="/pets" 
-              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1"
-              onClick={() => setMobileMenuOpen(false)}
+            </div>
+            <div 
+              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
+              onClick={() => {
+                navigate('/pets');
+                setMobileMenuOpen(false);
+              }}
             >
               Pets
-            </Link>
-            <Link 
-              to="/about" 
-              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1"
-              onClick={() => setMobileMenuOpen(false)}
+            </div>
+            <div 
+              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
+              onClick={() => {
+                navigate('/about');
+                setMobileMenuOpen(false);
+              }}
             >
               About
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1"
-              onClick={() => setMobileMenuOpen(false)}
+            </div>
+            <div 
+              className="text-dark-blue font-bold hover:text-dark-blue-60 px-2 py-1 cursor-pointer"
+              onClick={() => {
+                navigate('/contact');
+                setMobileMenuOpen(false);
+              }}
             >
               Contact
-            </Link>
+            </div>
           </nav>
           
           {/* Mobile Search */}
@@ -223,14 +239,10 @@ const Header = () => {
             {showResults && searchResults.length > 0 && (
               <div className="fixed left-4 right-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-[100] max-h-60 overflow-y-auto">
                 {searchResults.map(animal => (
-                  <Link 
+                  <div 
                     key={animal.id} 
-                    to={`/animal/${animal.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="flex items-center p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
-                    onClick={() => {
-                      setShowResults(false);
-                      setMobileMenuOpen(false);
-                    }}
+                    className="flex items-center p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer"
+                    onClick={() => handleResultClick(animal.name)}
                   >
                     {animal.image ? (
                       <GatsbyImage 
@@ -244,7 +256,7 @@ const Header = () => {
                       </div>
                     )}
                     <span className="text-dark-blue font-semibold">{animal.name}</span>
-                  </Link>
+                  </div>
                 ))}
               </div>
             )}
@@ -259,12 +271,12 @@ const Header = () => {
           
           {/* Mobile CTA Button */}
           <div className="px-2 mb-2">
-            <a 
-              href="#" 
-              className="bg-dark-blue text-white hover:bg-dark-blue-80 font-bold rounded-3xl inline-flex items-center justify-center w-full text-center py-3 px-7"
+            <div 
+              className="bg-dark-blue text-white hover:bg-dark-blue-80 font-bold rounded-3xl inline-flex items-center justify-center w-full text-center py-3 px-7 cursor-pointer"
+              onClick={() => navigate('#')}
             >
               Join the community
-            </a>
+            </div>
           </div>
         </div>
       </div>
