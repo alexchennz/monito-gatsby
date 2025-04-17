@@ -9,7 +9,9 @@
 
 ## Deployed to Netlify
 
-https://statuesque-paprenjak-abfd19.netlify.app/
+<a href="https://statuesque-paprenjak-abfd19.netlify.app/" target="_blank" rel="noopener noreferrer">https://statuesque-paprenjak-abfd19.netlify.app/</a>
+
+<p>Site built with Gatsby, Contentful Headless CMS, Tailwind CSS, deployed to Netlify</p>
 
 ## 🚀 Quick start
 
