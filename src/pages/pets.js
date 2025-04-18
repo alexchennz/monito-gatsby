@@ -36,7 +36,7 @@ const PetsPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <div className="bg-mon-yellow-40 py-20">
+      <div className="bg-mon-yellow-40 py-20  mt-16">
         <div className="container mx-auto px-4">
           <h1 className="text-clamp-h2 font-bold text-dark-blue-80 mb-4">Our Pets</h1>
           <p className="text-neutral-60 max-w-2xl">

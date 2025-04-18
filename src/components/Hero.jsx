@@ -8,7 +8,7 @@ import { Link } from 'gatsby';
 
 const Hero = () => {
   return (
-    <div className="relative bg-mon-yellow-40 rounded-b-[20px] xl:rounded-b-[40px] overflow-hidden pt-24">
+    <div className="relative bg-mon-yellow-40 rounded-b-[20px] xl:rounded-b-[40px] overflow-hidden mt-16 pt-8">
       
       {/* Decorative elements */}
       <img src={rectangle9} alt="" className="absolute top-[-18rem] left-0 size-[39.7rem]" />
